@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KieServerAdapter", "KieServerAdapter\KieServerAdapter.csproj", "{DE54E08B-D2C4-4100-8A73-826BBB763016}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KieServerAdapter.Test", "KieServerAdapter.Test\KieServerAdapter.Test.csproj", "{0E3C9591-CF3E-4D0A-AE0A-BD52D2A65CE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{26DB91ED-45AF-4330-957D-35EB3F3B431D}"
+	ProjectSection(SolutionItems) = preProject
+		Files\drools-logo.png = Files\drools-logo.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>KieServerAdapter</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>KieServerAdapter</title>
     <authors>Çetin Yılmaz</authors>
     <owners>Çetin Yılmaz</owners>
-    <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>-->
+    <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>-->
+    <projectUrl>https://github.com/tenkyu/KieServerAdapter</projectUrl>
     <iconUrl>http://www.drools.org/headerFooter/DroolsLogo210px.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.Net Adapter for Drools KieServer</description>
@@ -15,7 +15,7 @@
     <releaseNotes>Hello world for kie restful services.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <language>en-US</language>
-    <tags>drools kie kieserver resulful adapter</tags>
+    <tags>drools kie kieserver restful adapter</tags>
     <dependencies>
       <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
       <dependency id="Newtonsoft.Json" version="10.0.2" />
