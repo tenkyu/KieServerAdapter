@@ -8,11 +8,11 @@
     <owners>Çetin Yılmaz</owners>
     <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>-->
     <projectUrl>https://github.com/tenkyu/KieServerAdapter</projectUrl>
-    <iconUrl>http://www.drools.org/headerFooter/DroolsLogo210px.png</iconUrl>
+    <iconUrl>https://github.com/tenkyu/KieServerAdapter/blob/master/Files/drools-logo.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.Net Adapter for Drools KieServer</description>
     <summary>.Net Adapter for Drools KieServer</summary>
-    <releaseNotes>Hello world for kie restful services.</releaseNotes>
+    <releaseNotes>Added fire-all-rules command</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <language>en-US</language>
     <tags>drools kie kieserver restful adapter</tags>

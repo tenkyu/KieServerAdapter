@@ -1,0 +1,1 @@
+..\packages\NuGet.CommandLine.4.1.0\tools\NuGet.exe pack ..\KieServerAdapter

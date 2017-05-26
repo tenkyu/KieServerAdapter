@@ -8,6 +8,7 @@
     public enum KieCommandTypeEnum : byte
     {
         Insert = 10,
+        FireAllRules = 1,
         StartProcess = 0
     }
 }

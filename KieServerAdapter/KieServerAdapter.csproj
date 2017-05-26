@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandFireAllRules.cs" />
     <Compile Include="ExecutionResult.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FireAllRules.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandContainer.cs" />
     <Compile Include="CommandInsert.cs" />

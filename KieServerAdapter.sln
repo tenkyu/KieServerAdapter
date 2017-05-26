@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{26DB91ED-45AF-4330-957D-35EB3F3B431D}"
 	ProjectSection(SolutionItems) = preProject
 		Files\drools-logo.png = Files\drools-logo.png
+		Files\nuget.bat = Files\nuget.bat
 	EndProjectSection
 EndProject
 Global

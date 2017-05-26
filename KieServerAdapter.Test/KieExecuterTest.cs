@@ -47,8 +47,9 @@ namespace KieServerAdapter.Test
 
             var executer = new KieExecuter { HostUrl = "http://10.100.0.67:8082", AuthUserName = "kieserver", AuthPassword = "kieserver1!" };
 
-            executer.AddInsert(insertObject, "groupama.turkuaz.Sigortali");
-            executer.AddStartProcess("turkuaz.Flow_Turkuaz");
+            executer.Insert(insertObject, "groupama.turkuaz.Sigortali");
+            //executer.StartProcess("turkuaz.Flow_Turkuaz");
+            executer.FireAllRules();
 
             //var response = await executer.ExecuteAsync("turkuaz");
             var response = await executer.ExecuteAsync<Sigortali>("turkuaz");

@@ -30,14 +30,24 @@ namespace KieServerAdapter
         [JsonProperty("commands")]
         public List<ICommandContainer> Commands { get; private set; } = new List<ICommandContainer>();
 
-        public void AddStartProcess(string processId)
+        public void StartProcess(string processId)
         {
             Commands.Add(new StartProcess(processId));
         }
 
-        public void AddInsert(object commandObject, string objectNameSpace)
+        public void Insert(object commandObject, string objectNameSpace)
         {
             Commands.Add(new Insert(commandObject, objectNameSpace));
+        }
+
+        public void FireAllRules()
+        {
+            FireAllRules(-1);
+        }
+
+        public void FireAllRules(int max)
+        {
+            Commands.Add(new FireAllRules(max));
         }
 
         public async Task<ExecutionResponse<object>> ExecuteAsync(string containerName)
