@@ -1,4 +1,5 @@
-# KieServerAdapter
+# .Net KieServerAdapter for ![Logo](http://drools.org/headerFooter/DroolsLogo210px.png)
+
 KieServerAdapter is a restful client for Drools KieServer. You can easily call rules with your .Net project. These are the covered functions.
 
   - [InsertObjectCommand](https://docs.jboss.org/drools/release/latest/drools-docs/html_single/#_insertobjectcommand)
@@ -11,7 +12,7 @@ Drools also open source but it is in Java Stack and Kie Server is talented execu
 
 Install just call this line from your package manager console or see the instractions from https://www.nuget.org/packages/KieServerAdapter/
 
-```
+```javascript
 PM> Install-Package KieServerAdapter
 ```
 
