@@ -1,4 +1,4 @@
-# .Net KieServerAdapter for ![Logo](http://drools.org/headerFooter/DroolsLogo210px.png)
+# .Net KieServerAdapter for ![Logo](Files/DroolsLogo210px.png)
 
 KieServerAdapter is a restful client for Drools KieServer. You can easily call rules with your .Net project. These are the covered functions.
 
