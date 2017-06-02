@@ -51,6 +51,7 @@
     <Compile Include="ExecutionResult.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FireAllRules.cs" />
+    <Compile Include="FriendlyExecutionResponse.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandContainer.cs" />
     <Compile Include="CommandInsert.cs" />

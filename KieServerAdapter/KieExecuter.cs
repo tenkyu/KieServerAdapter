@@ -99,11 +99,14 @@ namespace KieServerAdapter
                 var command = Commands.FirstOrDefault(c => c.Command.CommandType == KieCommandTypeEnum.Insert);
                 var entity = command?.Command as CommandInsert;
 
-                if (result.Result?.ExecutionResults.Results.Count == 1)
+                try
                 {
-                    if (result.Result.ExecutionResults.Results[0].Key == entity?.OutIdentifier)
+                    var outObject =
+                        result.Result?.ExecutionResults.Results.SingleOrDefault(e => e.Key == entity?.OutIdentifier);
+
+                    if (outObject != null)
                     {
-                        var item = (JObject)result.Result.ExecutionResults.Results[0].Value;
+                        var item = (JObject)outObject.Value.Value;
                         var first = item.First;
 
                         if (first is JProperty)
@@ -116,6 +119,10 @@ namespace KieServerAdapter
                             }
                         }
                     }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
                 }
             }
 

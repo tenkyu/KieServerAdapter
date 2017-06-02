@@ -43,9 +43,15 @@ namespace KieServerAdapter.Test
         [TestMethod]
         public async Task ExecuteAsync()
         {
-            var insertObject = new Sigortali { Cinsiyet = "K", TanzimTarihi = DateTime.Today, EdinimTuru = "R", Yas = 40, KacYildirBizimSigortalimiz = 1, Plan = "PLAN_D", IkametIl = "06", FerdiKazaBedeli = 25000, KisiTipi = "G", OncekiYilSaglikPrimi = 600};
+            var insertObject = new Sigortali { Cinsiyet = "K", TanzimTarihi = DateTime.Today, EdinimTuru = "R", Yas = 40, KacYildirBizimSigortalimiz = 1, Plan = "PLAN_D", IkametIl = "006", FerdiKazaBedeli = 25000, KisiTipi = "G", OncekiYilSaglikPrimi = 600};
 
-            var executer = new KieExecuter { HostUrl = "http://10.100.0.67:8082", AuthUserName = "kieserver", AuthPassword = "kieserver1!" };
+            var executer = new KieExecuter
+            {
+                HostUrl = "http://10.100.0.67:8082",
+                AuthUserName = "kieserver",
+                AuthPassword = "kieserver1!",
+                LookUp = "KiePerRequestStateless"
+            };
 
             executer.Insert(insertObject, "groupama.turkuaz.Sigortali");
             //executer.StartProcess("turkuaz.Flow_Turkuaz");
@@ -54,7 +60,7 @@ namespace KieServerAdapter.Test
             //var response = await executer.ExecuteAsync("turkuaz");
             var response = await executer.ExecuteAsync<Sigortali>("turkuaz");
 
-            Assert.IsTrue(response.Type.Equals("SUCCESS"));
+            Assert.IsTrue(response.ResponseType.Equals(TypeEnum.Success));
         }
     }
 }
