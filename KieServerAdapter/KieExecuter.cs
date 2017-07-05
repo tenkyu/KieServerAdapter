@@ -16,7 +16,7 @@ namespace KieServerAdapter
         public string HostUrl { get; set; }
 
         [JsonIgnore]
-        public string InstancesPath { get; set; } = "kie-server/services/rest/server/containers/instances/";
+        public string InstancesPath { get; set; } = "kie-server";
 
         [JsonIgnore]
         public string AuthUserName { get; set; }
@@ -76,7 +76,7 @@ namespace KieServerAdapter
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
                 }
 
-                using (var request = new HttpRequestMessage(HttpMethod.Post, string.Concat(InstancesPath, containerName)))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, string.Concat(InstancesPath, "/services/rest/server/containers/instances/", containerName)))
                 {
                     request.Content = new StringContent(json);
                     request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
