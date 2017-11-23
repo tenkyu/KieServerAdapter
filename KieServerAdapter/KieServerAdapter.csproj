@@ -48,10 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandFireAllRules.cs" />
+    <Compile Include="CommandGetGlobal.cs" />
+    <Compile Include="CommandSetGlobal.cs" />
     <Compile Include="ExecutionResult.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FireAllRules.cs" />
     <Compile Include="FriendlyExecutionResponse.cs" />
+    <Compile Include="GetGlobal.cs" />
+    <Compile Include="ICommandObject.cs" />
+    <Compile Include="ICommandOutIdentifier.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandContainer.cs" />
     <Compile Include="CommandInsert.cs" />
@@ -62,6 +67,7 @@
     <Compile Include="ExecutionResponse.cs" />
     <Compile Include="Insert.cs" />
     <Compile Include="ResponseExecutionResult.cs" />
+    <Compile Include="SetGlobal.cs" />
     <Compile Include="StartProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnixTimestampConverter.cs" />
