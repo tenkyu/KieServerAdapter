@@ -2,7 +2,7 @@
 
 namespace KieServerAdapter
 {
-    public class CommandInsert : ICommand
+    public class CommandInsert : ICommand, ICommandOutIdentifier, ICommandObject
     {
         [JsonProperty("out-identifier")]
         public string OutIdentifier { get; set; } = "response";
