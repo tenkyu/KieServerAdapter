@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>KieServerAdapter</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <title>KieServerAdapter</title>
     <authors>Çetin Yılmaz, Jesús Rodríguez Vidal</authors>
     <owners>Çetin Yılmaz</owners>

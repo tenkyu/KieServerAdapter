@@ -1,0 +1,1 @@
+Newtonsoft.Json.dll and System.Net.Http.Formatting.dll should be in bin folder by Copy Local = True option (if so, switch False to True again, there is a bug)
