@@ -2,9 +2,9 @@
 <package >
   <metadata>
     <id>KieServerAdapter</id>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
     <title>KieServerAdapter</title>
-    <authors>Çetin Yılmaz</authors>
+    <authors>Çetin Yılmaz, Jesús Rodríguez Vidal</authors>
     <owners>Çetin Yılmaz</owners>
     <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>-->
     <projectUrl>https://github.com/tenkyu/KieServerAdapter</projectUrl>
