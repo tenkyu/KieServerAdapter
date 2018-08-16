@@ -2,6 +2,7 @@
 
 namespace KieServerAdapter
 {
+    // test
     public class Insert : ICommandContainer
     {
         [JsonProperty("insert")]
