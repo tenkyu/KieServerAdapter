@@ -10,6 +10,9 @@ namespace KieServerAdapter
         [JsonProperty("object")]
         public CommandObject CommandObject { get; set; }
 
+        [JsonProperty("return-object")]
+        public bool ReturnObject { get; set; } = true;
+
         [JsonIgnore]
         public KieCommandTypeEnum CommandType { get; } = KieCommandTypeEnum.Insert;
     }

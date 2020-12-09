@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
 namespace KieServerAdapter
@@ -24,7 +25,13 @@ namespace KieServerAdapter
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            JToken token = JToken.Load(reader);
+            if (token.Type == JTokenType.Object)
+            {
+                var prop = token.First as JProperty;
+                return new CommandObject((prop as JProperty).Value, (prop as JProperty).Name);
+            }
+            return null;
         }
 
         public override bool CanConvert(Type objectType)

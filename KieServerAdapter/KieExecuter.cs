@@ -31,6 +31,16 @@ namespace KieServerAdapter
         [JsonProperty("lookup")]
         public string LookUp { get; set; } = "defaultKieSession";
 
+        /// <summary>
+        /// Re-sort the commands in the batch by priority as listed in KieCommandTypeEnum.
+        /// Defaults to true for backwards compatibility with the original library, but
+        /// that behavior may not be what you want if you need a specific order to 
+        /// your commands, such as interspersing GetObjects or Query command before and
+        /// after FireAllRules.
+        /// </summary>
+        [JsonIgnore]
+        public bool SortCommandBatch { get; set; } = true;
+
         [JsonProperty("commands")]
         public List<ICommandContainer> Commands { get; private set; } = new List<ICommandContainer>();
 
@@ -39,19 +49,56 @@ namespace KieServerAdapter
             Commands.Add(new StartProcess(processId));
         }
 
-        public void Insert(object commandObject, string objectNameSpace)
+        public void Insert(object commandObject, string objectNameSpace, bool returnObject = true)
         {
-            Commands.Add(new Insert(commandObject, objectNameSpace));
+            Commands.Add(new Insert(commandObject, objectNameSpace, returnObject));
         }
+
+        public void Insert(object commandObject, string objectNameSpace, string outIdentifier, bool returnObject = true)
+        {
+            Commands.Add(new Insert(commandObject, objectNameSpace, outIdentifier, returnObject));
+        }
+
+        /// <summary>
+        /// insert an object whose type name will come from a DroolsType attribute on the class 
+        /// of the object being inserted
+        /// </summary>
+        public void InsertType(object commandObject, bool returnObject = true)
+        {
+            var objectNameSpace = commandObject.GetType().GetAttributeValue<DroolsTypeAttribute, string>(a => a.TypeName);
+            Insert(commandObject, objectNameSpace, returnObject);
+        }
+
+        /// <summary>
+        /// insert an object whose type name will come from a DroolsType attribute on the class 
+        /// of the object being inserted with an explicit out-identifier
+        /// </summary>
+        public void InsertType(object commandObject, string outIdentifier, bool returnObject = true)
+        {
+            var objectNameSpace = commandObject.GetType().GetAttributeValue<DroolsTypeAttribute, string>(a => a.TypeName);
+            Insert(commandObject, objectNameSpace, outIdentifier, returnObject);
+        }
+
 
         public void SetGlobal(string identifier, object commandObject, string objectNameSpace)
         {
             Commands.Add(new SetGlobal(identifier, commandObject, objectNameSpace));
         }
 
+        public void SetGlobal(string identifier, object commandObject)
+        {
+            var objectNameSpace = commandObject.GetType().GetAttributeValue<DroolsTypeAttribute, string>(a => a.TypeName);
+            SetGlobal(identifier, commandObject, objectNameSpace);
+        }
+
         public void GetGlobal(string identifier)
         {
             Commands.Add(new GetGlobal(identifier));
+        }
+
+        public void GetObjects(string outIdentifier = null)
+        {
+            Commands.Add(new GetObjects(outIdentifier));
         }
 
         public void FireAllRules()
@@ -62,6 +109,11 @@ namespace KieServerAdapter
         public void FireAllRules(int max)
         {
             Commands.Add(new FireAllRules(max));
+        }
+
+        public void Query(string identifier, string outIdentifier = null, IEnumerable<object> arguments = null)
+        {
+            Commands.Add(new Query(identifier, outIdentifier, arguments));
         }
 
         public async Task<ExecutionResponse<object>> ExecuteAsync(string containerName)
@@ -79,7 +131,7 @@ namespace KieServerAdapter
             return await ExecuteAsync<T>(containerName, KieCommandTypeEnum.SetGlobal);
         }
 
-        private async Task<ExecutionResponse<T>> ExecuteAsync<T>(string containerName, KieCommandTypeEnum commandType)
+        public async Task<ExecutionResponse<T>> ExecuteAsync<T>(string containerName, KieCommandTypeEnum commandType)
         {
             var startDate = DateTime.Now;
 
@@ -96,7 +148,11 @@ namespace KieServerAdapter
 
         private async Task<ExecutionResponse<T>> ExecuteCall<T>(string containerName)
         {
-            Commands = Commands.OrderByDescending(c => c.Command.CommandType).ToList();
+            if (SortCommandBatch)
+            {
+                Commands = Commands.OrderByDescending(c => c.Command.CommandType).ToList();
+            }
+                
             var json = JsonConvert.SerializeObject(this);
             var result = new ExecutionResponse<T>();
 
@@ -146,16 +202,20 @@ namespace KieServerAdapter
                     if (outObject != null)
                     {
                         var item = (JObject)outObject.Value.Value;
-                        var first = item.First;
 
-                        if (first is JProperty)
+                        if (item != null)
                         {
-                            var prop = first as JProperty;
-                            var commandObject = command?.Command as ICommandObject;
-                            var v = prop.Name.Equals(commandObject?.CommandObject);
-                            if (true)
+                            var first = item.First;
+
+                            if (first is JProperty)
                             {
-                                result.SmartSingleResponse = JsonConvert.DeserializeObject<T>(prop.Value.ToString(), new UnixTimestampConverter());
+                                var prop = first as JProperty;
+                                var commandObject = command?.Command as ICommandObject;
+                                var v = prop.Name.Equals(commandObject?.CommandObject);
+                                if (true)
+                                {
+                                    result.SmartSingleResponse = JsonConvert.DeserializeObject<T>(prop.Value.ToString(), new UnixTimestampConverter());
+                                }
                             }
                         }
                     }
@@ -167,4 +227,5 @@ namespace KieServerAdapter
             }
         }
     }
+
 }
